@@ -5,12 +5,14 @@
 #include "raylib.h"
 #include "Bullet.h"
 #include "Common.h"
-Player::Player(float startx, float starty, float startspeedx, float startspeedy, int starthp) {
+Player::Player(float startx, float starty,float startr, float startspeedx, float startspeedy, int starthp) {
 	x = startx;
 	y = starty;
 	vx = startspeedx;
 	vy = startspeedy;
+	r = startr;
 	hp = starthp;
+	maxhp = starthp;    
 	alive = true;
 }
 void Player::Draw() {
@@ -70,4 +72,13 @@ float Player::GetX() {
 }
 float Player::GetY() {
 	return y;
+}
+float Player::GetR() {
+	return r;
+}
+float Player::GetHPX() {
+	return x - r;
+}
+float Player::GetHPY() {
+	return y - r - r / 2;
 }

@@ -7,8 +7,8 @@
 #include <vector>
 #include <algorithm>
 int main() {
-	Player JIE{ 500,500,6.0,6.0,50 };
-	Monster S{ 200,200,3,3,200,10 };
+	Player JIE{ 500,500,20,6.0,6.0,50 };
+	Monster S{ 200,200,20,20,3,3,200,10 };
 	std::vector<Bullet>Bullets;
 	InitWindow(1280, 960, "Game");
 	SetTargetFPS(60);

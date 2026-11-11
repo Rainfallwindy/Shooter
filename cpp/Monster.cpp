@@ -2,17 +2,20 @@
 #include "Bullet.h"
 #include "Monster.h"
 #include "Player.h"
-Monster::Monster(float startx, float starty, float startvx, float startvy, int starthp, int startdamage) {
+Monster::Monster(float startx, float starty,float startwidth,float startlength, float startvx, float startvy, int starthp, int startdamage) {
 	x = startx;
 	y = starty;
+	width = startwidth;
+	length = startlength;
 	vx = startvx;
 	vy = startvy;
 	hp = starthp;
+	maxhp = starthp;
 	damage = startdamage;
 	alive = true;
 }
 void Monster::Draw() {
-	DrawRectangle((int)x, (int)y, 20, 20, BLACK);
+	DrawRectangle((int)x, (int)y, length, width, BLACK);
 }
 void Monster::Move(float playerx, float playery) {
 	if (!alive) return;
@@ -66,4 +69,16 @@ float Monster::GetY() {
 }
 int Monster::GetDamage() {
 	return damage;
+}
+float Monster::GetHPX() {
+	return x ;
+}
+float Monster::GetHPY() {
+	return y - width / 2;
+}
+float Monster::GetWidth() {
+	return width;
+}
+float Monster::GetLength() {
+	return length;
 }
