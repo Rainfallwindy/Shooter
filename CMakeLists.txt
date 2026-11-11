@@ -15,7 +15,7 @@ cpp/Bullet.cpp
 cpp/Player.cpp
 cpp/Monster.cpp
 cpp/Common.cpp
-)
+   "cpp/Weapon.cpp" "h/Weapon.h" "cpp/Animator.cpp" "h/Animator.h"  "cpp/Effect.cpp" "h/Effect.h" "h/BulletHitBloodEffect.h" "cpp/BulletHitBloodEffect.cpp")
 
 target_link_libraries(Shooter raylib winmm gdi32 user32 shell32)
 
@@ -23,4 +23,9 @@ add_custom_command(TARGET Shooter POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     "${CMAKE_SOURCE_DIR}/raylib/lib/raylib.dll"
     $<TARGET_FILE_DIR:Shooter>
+)
+add_custom_command(TARGET Shooter POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_SOURCE_DIR}/assets"
+    $<TARGET_FILE_DIR:Shooter>/assets
 )

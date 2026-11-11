@@ -1,5 +1,6 @@
 #pragma once
 #include "Bullet.h"
+#include "raylib.h"
 class Monster {
 private:
 	float x, y;
@@ -10,8 +11,10 @@ private:
 	int hp;
 	int maxhp;
 	int damage;
+	Texture2D tex;
+	float rotation;
 public:
-	Monster(float startx, float starty,float startwidth,float startlength, float startvx, float startvy, int starthp, int startdamage);
+	Monster(float startx, float starty,float startwidth,float startlength, float startvx, float startvy, int starthp, int startdamage,Texture astand);
 	void Draw();
 	void Move(float playerx, float playery);
 	bool TakeShoot(Bullet& Bullets);

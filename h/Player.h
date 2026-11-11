@@ -1,6 +1,13 @@
 #pragma once
 #include <vector>
+#include "Animator.h"
+#include "raylib.h"
 #include "Bullet.h"
+enum PlayerState {
+	STAND,
+	WALK,
+	SHOOT
+};
 class Player {
 private:
 	float x, y;
@@ -9,8 +16,14 @@ private:
 	bool alive;
 	int hp;
 	int maxhp;
+	Texture2D stand;
+	Texture2D walk;
+	Texture2D shoot;
+	PlayerState state;
+	float rotation;
+	Animator animator;
 public:
-	Player(float startx, float starty, float startr, float startspeedx, float startspeedy, int starthp);
+	Player(float startx, float starty, float startr, float startspeedx, float startspeedy, int starthp, Texture2D astand, Texture2D awalk, Texture ashoot);
 	void Draw();
 	void DeadDraw();
 	bool TakeHit(float monsterx, float monstery, bool monsterAlive);
@@ -24,4 +37,5 @@ public:
 	bool IsAlive();
 	float GetX();
 	float GetY();
+	void State();
 };

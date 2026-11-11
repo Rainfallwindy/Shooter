@@ -2,7 +2,7 @@
 #include "Bullet.h"
 #include "Monster.h"
 #include "Player.h"
-Monster::Monster(float startx, float starty,float startwidth,float startlength, float startvx, float startvy, int starthp, int startdamage) {
+Monster::Monster(float startx, float starty,float startwidth,float startlength, float startvx, float startvy, int starthp, int startdamage, Texture astand) {
 	x = startx;
 	y = starty;
 	width = startwidth;
@@ -13,9 +13,15 @@ Monster::Monster(float startx, float starty,float startwidth,float startlength, 
 	maxhp = starthp;
 	damage = startdamage;
 	alive = true;
+	rotation = 0.0f;
+	tex = astand;
 }
 void Monster::Draw() {
-	DrawRectangle((int)x, (int)y, length, width, BLACK);
+	Texture2D currentTexture = tex;
+	Rectangle sourceRec = { 0.0f, 0.0f, (float)currentTexture.width, (float)currentTexture.height };
+	Rectangle destRec = { x, y, (float)currentTexture.width, (float)currentTexture.height };
+	Vector2 origin = { (float)currentTexture.width / 2, (float)currentTexture.height / 2 };
+	DrawTexturePro(currentTexture, sourceRec, destRec, origin, rotation, WHITE);
 }
 void Monster::Move(float playerx, float playery) {
 	if (!alive) return;
@@ -35,6 +41,7 @@ void Monster::Move(float playerx, float playery) {
 	}
 	x = x + vx;
 	y = y + vy;
+	rotation = atan2(dy,dx) * RAD2DEG;
 }
 bool Monster::TakeShoot(Bullet& Bullets) {
 	float dx = fabs(Bullets.GetX() - x);
